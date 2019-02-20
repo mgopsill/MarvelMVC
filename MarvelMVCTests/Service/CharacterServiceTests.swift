@@ -30,13 +30,18 @@ class CharacterServiceTests: XCTestCase {
         let data = FileManager().contents(atPath: path)
         
         mockNetworkManager.data = data
-        let expectation = XCTestExpectation(description: "Fetchs the character json")
+        var fetchedModel: CharacterResponseModel?
+        var fetchedError: Error?
+        let expectation = XCTestExpectation(description: #function)
         subject.fetchCharacters { (characterResponseModel, error) in
-            XCTAssertNotNil(characterResponseModel)
-            XCTAssertNil(error)
+            fetchedModel = characterResponseModel
+            fetchedError = error
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
+        
+        XCTAssertNotNil(fetchedModel)
+        XCTAssertNil(fetchedError)
     }
     
     func test_FetchCharactersGetsIncorrectDataDoesSomething() {
@@ -44,26 +49,38 @@ class CharacterServiceTests: XCTestCase {
         mockNetworkManager.data = incorrectData
         mockNetworkManager.error = TestError.test
         
-        let expectation = XCTestExpectation(description: "Fetchs the character json")
+        var fetchedModel: CharacterResponseModel?
+        var fetchedError: Error?
+        
+        let expectation = XCTestExpectation(description: #function)
         subject.fetchCharacters { (characterResponseModel, error) in
-            XCTAssertNil(characterResponseModel)
-            XCTAssertNotNil(error)
+            fetchedModel = characterResponseModel
+            fetchedError = error
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
+        
+        XCTAssertNil(fetchedModel)
+        XCTAssertNotNil(fetchedError)
     }
     
     func test_FetchCharactersFailsReturnsNil() {
         mockNetworkManager.data = nil
         mockNetworkManager.error = TestError.test
         
-        let expectation = XCTestExpectation(description: "Fetchs the character json")
+        var fetchedModel: CharacterResponseModel?
+        var fetchedError: Error?
+        
+        let expectation = XCTestExpectation(description: #function)
         subject.fetchCharacters { (characterResponseModel, error) in
-            XCTAssertNil(characterResponseModel)
-            XCTAssertNotNil(error)
+            fetchedModel = characterResponseModel
+            fetchedError = error
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
+        
+        XCTAssertNil(fetchedModel)
+        XCTAssertNotNil(fetchedError)
     }
 }
 
