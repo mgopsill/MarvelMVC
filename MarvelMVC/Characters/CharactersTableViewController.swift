@@ -9,17 +9,9 @@
 import UIKit
 
 class CharactersTableViewController: UITableViewController {
-        
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        tableView.dataSource = self
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
+        tableView.dataSource = self
         title = "Characters"
     }
     

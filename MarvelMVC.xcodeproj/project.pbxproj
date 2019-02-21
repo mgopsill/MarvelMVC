@@ -101,10 +101,9 @@
 		4D5E894021F71C0E000FE54A /* MarvelMVC */ = {
 			isa = PBXGroup;
 			children = (
+				FFA1BB02221EC76C005923F9 /* Characters */,
 				4D5E897821F886B1000FE54A /* Service */,
-				4D5E897521F8867B000FE54A /* Model */,
 				4D5E896821F726F5000FE54A /* AppDelegate */,
-				4D5E896521F72623000FE54A /* ViewControllers */,
 				4D5E894821F71C0F000FE54A /* Assets.xcassets */,
 				4D5E894A21F71C0F000FE54A /* LaunchScreen.storyboard */,
 				4D5E894D21F71C0F000FE54A /* Info.plist */,
@@ -116,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				4DA2B97021FB660A0036777C /* JSON */,
+				FFA1BB03221EC7EE005923F9 /* Characters */,
 				4D5E897921F886B9000FE54A /* Service */,
 				4D5E896921F72701000FE54A /* AppDelegate */,
 				4D5E896621F72636000FE54A /* ViewControllers */,
@@ -125,18 +125,9 @@
 			path = MarvelMVCTests;
 			sourceTree = "<group>";
 		};
-		4D5E896521F72623000FE54A /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				4D5E896121F71D0F000FE54A /* CharactersTableViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
 		4D5E896621F72636000FE54A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4D5E896321F71D7B000FE54A /* CharactersTableViewControllerTests.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -158,19 +149,10 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
-		4D5E897521F8867B000FE54A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4D5E897621F8868E000FE54A /* CharacterResponseModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		4D5E897821F886B1000FE54A /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				4DA2B96F21FB62F40036777C /* Protocols */,
-				4D5E897C21F8870C000FE54A /* CharacterService.swift */,
 				4DA2B96721FB60770036777C /* NetworkManager.swift */,
 				4DA2B96921FB60BD0036777C /* URLs.swift */,
 			);
@@ -180,7 +162,6 @@
 		4D5E897921F886B9000FE54A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				4D5E897A21F886D1000FE54A /* CharacterServiceTests.swift */,
 				4DA2B96521FB4B910036777C /* NetworkManagerTests.swift */,
 				FF023C9E221E96B0002690FE /* NetworkManagerTests+URLProtocol.swift */,
 			);
@@ -202,6 +183,25 @@
 				4DA2B97121FB66340036777C /* characters.json */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		FFA1BB02221EC76C005923F9 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				4D5E896121F71D0F000FE54A /* CharactersTableViewController.swift */,
+				4D5E897C21F8870C000FE54A /* CharacterService.swift */,
+				4D5E897621F8868E000FE54A /* CharacterResponseModel.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		FFA1BB03221EC7EE005923F9 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				4D5E897A21F886D1000FE54A /* CharacterServiceTests.swift */,
+				4D5E896321F71D7B000FE54A /* CharactersTableViewControllerTests.swift */,
+			);
+			path = Characters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
