@@ -13,15 +13,17 @@ import XCTest
 class CharactersTableViewControllerTests: XCTestCase {
 
     var subject: CharactersTableViewController!
+    var mockCharacterService: MockCharacterService!
+    
+    func simulateViewDidLoad() { _ = subject.view }
     
     override func setUp() {
         super.setUp()
-        let navigationController = UINavigationController()
-        subject = CharactersTableViewController()
-        navigationController.setViewControllers([subject], animated: false)
+        mockCharacterService = MockCharacterService()
         
-        XCTAssertNotNil(navigationController.view)
-        XCTAssertNotNil(subject.view)
+        let navigationController = UINavigationController()
+        subject = CharactersTableViewController(characterService: mockCharacterService)
+        navigationController.setViewControllers([subject], animated: false)
     }
 
     override func tearDown() {
@@ -29,6 +31,7 @@ class CharactersTableViewControllerTests: XCTestCase {
     }
 
     func testViewDidLoad_SetsTitleToCharacter() {
+        simulateViewDidLoad()
         XCTAssertEqual(subject.title, "Characters")
     }
     
@@ -53,5 +56,47 @@ class CharactersTableViewControllerTests: XCTestCase {
     func testTableView_CellTypeIsUITableViewCell() {
         let cell = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         XCTAssertNotNil(cell)
+    }
+    
+    func test_ViewDidLoad_StartsFetchForCharacters() {
+        simulateViewDidLoad()
+
+        XCTAssertTrue(mockCharacterService.fetchCharactersCalled)
+    }
+    
+    func test_ViewDidLoad_StartsFetchForCharacters_SucceedsUpdatesTableView() {
+        let bundle = Bundle(for: type(of: self))
+        let path = bundle.path(forResource: "characters", ofType: "json")!
+        let data = FileManager().contents(atPath: path)
+        let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data!)
+        
+        mockCharacterService.modelToReturn = mockResponseModel
+            
+        XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), mockResponseModel.data.results.count)
+    }
+    
+    func test_ViewDidLoad_StartsFetchForCharacters_FailsShowsEmptyTableView() {
+    
+    }
+}
+
+class MockCharacterService: CharacterService {
+    
+    var fetchCharactersCalled: Bool = false
+    var modelToReturn: CharacterResponseModel?
+    var errorToReturn: Error?
+    
+    override func fetchCharacters(completion: @escaping CharacterServiceCompletion) {
+        fetchCharactersCalled = true
+        completion(modelToReturn, errorToReturn)
+    }
+}
+
+extension CharacterResponseModel {
+    static func characterReponseModel(for data: Data) -> CharacterResponseModel {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let model = try? decoder.decode(CharacterResponseModel.self, from: data)
+        return model!
     }
 }

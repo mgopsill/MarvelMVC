@@ -118,18 +118,10 @@
 				FFA1BB03221EC7EE005923F9 /* Characters */,
 				4D5E897921F886B9000FE54A /* Service */,
 				4D5E896921F72701000FE54A /* AppDelegate */,
-				4D5E896621F72636000FE54A /* ViewControllers */,
 				4D5E895821F71C0F000FE54A /* Info.plist */,
 				4D5E896E21F72986000FE54A /* TestingAppDelegate.swift */,
 			);
 			path = MarvelMVCTests;
-			sourceTree = "<group>";
-		};
-		4D5E896621F72636000FE54A /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		4D5E896821F726F5000FE54A /* AppDelegate */ = {
