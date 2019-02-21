@@ -24,6 +24,7 @@
 		4DA2B96C21FB62AC0036777C /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA2B96B21FB62AC0036777C /* URLSessionProtocol.swift */; };
 		4DA2B96E21FB62E50036777C /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA2B96D21FB62E50036777C /* URLSessionDataTaskProtocol.swift */; };
 		4DA2B97221FB66340036777C /* characters.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DA2B97121FB66340036777C /* characters.json */; };
+		FF023CA0221E96B5002690FE /* NetworkManagerTests+URLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF023C9E221E96B0002690FE /* NetworkManagerTests+URLProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		4DA2B96B21FB62AC0036777C /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		4DA2B96D21FB62E50036777C /* URLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
 		4DA2B97121FB66340036777C /* characters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = characters.json; sourceTree = "<group>"; };
+		FF023C9E221E96B0002690FE /* NetworkManagerTests+URLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManagerTests+URLProtocol.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 			children = (
 				4D5E897A21F886D1000FE54A /* CharacterServiceTests.swift */,
 				4DA2B96521FB4B910036777C /* NetworkManagerTests.swift */,
+				FF023C9E221E96B0002690FE /* NetworkManagerTests+URLProtocol.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			files = (
 				4D5E896B21F72713000FE54A /* AppDelegateTests.swift in Sources */,
 				4D5E896421F71D7B000FE54A /* CharactersTableViewControllerTests.swift in Sources */,
+				FF023CA0221E96B5002690FE /* NetworkManagerTests+URLProtocol.swift in Sources */,
 				4D5E896F21F72986000FE54A /* TestingAppDelegate.swift in Sources */,
 				4D5E897B21F886D1000FE54A /* CharacterServiceTests.swift in Sources */,
 				4DA2B96621FB4B910036777C /* NetworkManagerTests.swift in Sources */,
