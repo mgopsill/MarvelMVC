@@ -24,6 +24,7 @@ class NetworkManager: NetworkManaging {
     
     @discardableResult func fetch(request: URLRequest, completeOnMainThread: Bool, completion: @escaping ServiceCompletion) -> URLSessionDataTaskProtocol {
         let dataTask = session.dataTask(with: request) { (data, response, error) in
+            self.log(data, response, error)
             if completeOnMainThread {
                 DispatchQueue.main.async {
                     completion(data, response, error)
@@ -34,5 +35,12 @@ class NetworkManager: NetworkManaging {
         }
         dataTask.resume()
         return dataTask
+    }
+    
+    func log(_ data: Data?, _ response: URLResponse?, _ error: Error?) {
+        print("--- Network Responded---")
+        print("  Data: \(String(describing: data))")
+        print("  Reponse: \(String(describing: response?.url))")
+        print("  Error: \(String(describing: error))")
     }
 }

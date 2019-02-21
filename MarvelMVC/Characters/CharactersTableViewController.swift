@@ -30,8 +30,10 @@ class CharactersTableViewController: UITableViewController {
         tableView.dataSource = self
         title = "Characters"
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         characterService.fetchCharacters { (model, error) in
             self.characters = model?.data.results
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     

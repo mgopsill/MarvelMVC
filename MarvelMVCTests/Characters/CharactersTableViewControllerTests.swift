@@ -49,10 +49,6 @@ class CharactersTableViewControllerTests: XCTestCase {
         XCTAssertTrue(subject.tableView.dataSource === subject)
     }
     
-    func testTableView_NumberOfRowsShouldBeTen() {
-        XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), 10)
-    }
-    
     func testTableView_CellTypeIsUITableViewCell() {
         let cell = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         XCTAssertNotNil(cell)
@@ -76,7 +72,27 @@ class CharactersTableViewControllerTests: XCTestCase {
     }
     
     func test_ViewDidLoad_StartsFetchForCharacters_FailsShowsEmptyTableView() {
+        mockCharacterService.modelToReturn = nil
+        simulateViewDidLoad()
+        
+        XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), 0)
+    }
     
+    func test_ViewDidLoad_WhileFetchingShowsActivityIndicator() {
+        let networkDelay = 0.5
+        mockCharacterService.networkDelay = networkDelay
+        simulateViewDidLoad()
+        XCTAssertTrue(UIApplication.shared.isNetworkActivityIndicatorVisible)
+    }
+    
+    func test_ViewDidLoad_AfterFetchingDoesNotShowActivityIndicator() {
+        simulateViewDidLoad()
+        let expectation = XCTestExpectation(description: #function)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
+        XCTAssertFalse(UIApplication.shared.isNetworkActivityIndicatorVisible)
     }
 }
 
@@ -85,10 +101,17 @@ class MockCharacterService: CharacterService {
     var fetchCharactersCalled: Bool = false
     var modelToReturn: CharacterResponseModel?
     var errorToReturn: Error?
+    var networkDelay: TimeInterval?
     
     override func fetchCharacters(completion: @escaping CharacterServiceCompletion) {
         fetchCharactersCalled = true
-        completion(modelToReturn, errorToReturn)
+        if let networkDelay = networkDelay {
+            DispatchQueue.main.asyncAfter(deadline: .now() + networkDelay) {
+                completion(self.modelToReturn, self.errorToReturn)
+            }
+        } else {
+            completion(modelToReturn, errorToReturn)
+        }
     }
 }
 
