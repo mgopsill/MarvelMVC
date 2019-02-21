@@ -26,12 +26,12 @@ class NetworkManagerTests: XCTestCase {
         subject = nil
     }
 
-    func test_ServiceFetchStartsARequest() {
+    func test_NetworkManagerFetchCalled_StartsARequest() {
         let dataTask = subject.fetch(request: request, completeOnMainThread: false) { (_, _, _) in }
         XCTAssertTrue((dataTask as! MockURLSessionDataTask).resumeCalled)
     }
     
-    func test_ServiceFetchCallsCompletion() {
+    func test_NetworkManagerFetchCalled_DataReceived_CallsCompletionWithData() {
         mockSession.data = mockData
 
         var result: Data?
@@ -41,10 +41,10 @@ class NetworkManagerTests: XCTestCase {
         XCTAssertEqual(result, mockData)
     }
     
-    func test_ServiceFetchFailsWithNoDataShouldComplete() {
+    func test_NetworkManagerFetchCalled_NoDataReceived_CallsCompletionWithNil() {
         mockSession.data = nil
 
-        var result: Data?
+        var result: Data? = mockData
         subject.fetch(request: request, completeOnMainThread: false) { (data, _, _) in
             result = data
         }
