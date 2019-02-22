@@ -25,6 +25,8 @@
 		4DA2B96E21FB62E50036777C /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA2B96D21FB62E50036777C /* URLSessionDataTaskProtocol.swift */; };
 		4DA2B97221FB66340036777C /* characters.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DA2B97121FB66340036777C /* characters.json */; };
 		FF023CA0221E96B5002690FE /* NetworkManagerTests+URLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF023C9E221E96B0002690FE /* NetworkManagerTests+URLProtocol.swift */; };
+		FF07A34722203F0700FEA9A5 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07A34622203F0700FEA9A5 /* CharacterTableViewCell.swift */; };
+		FF07A34922203F2300FEA9A5 /* CharacterTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07A34822203F2300FEA9A5 /* CharacterTableViewCellTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		4DA2B96D21FB62E50036777C /* URLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
 		4DA2B97121FB66340036777C /* characters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = characters.json; sourceTree = "<group>"; };
 		FF023C9E221E96B0002690FE /* NetworkManagerTests+URLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManagerTests+URLProtocol.swift"; sourceTree = "<group>"; };
+		FF07A34622203F0700FEA9A5 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
+		FF07A34822203F2300FEA9A5 /* CharacterTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCellTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				4D5E896121F71D0F000FE54A /* CharactersTableViewController.swift */,
+				FF07A34622203F0700FEA9A5 /* CharacterTableViewCell.swift */,
 				4D5E897C21F8870C000FE54A /* CharacterService.swift */,
 				4D5E897621F8868E000FE54A /* CharacterResponseModel.swift */,
 			);
@@ -192,6 +197,7 @@
 			children = (
 				4D5E897A21F886D1000FE54A /* CharacterServiceTests.swift */,
 				4D5E896321F71D7B000FE54A /* CharactersTableViewControllerTests.swift */,
+				FF07A34822203F2300FEA9A5 /* CharacterTableViewCellTests.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -304,6 +310,7 @@
 				4D5E894221F71C0E000FE54A /* AppDelegate.swift in Sources */,
 				4D5E896D21F72933000FE54A /* main.swift in Sources */,
 				4DA2B96C21FB62AC0036777C /* URLSessionProtocol.swift in Sources */,
+				FF07A34722203F0700FEA9A5 /* CharacterTableViewCell.swift in Sources */,
 				4DA2B96821FB60770036777C /* NetworkManager.swift in Sources */,
 				4DA2B96A21FB60BD0036777C /* URLs.swift in Sources */,
 			);
@@ -317,6 +324,7 @@
 				4D5E896421F71D7B000FE54A /* CharactersTableViewControllerTests.swift in Sources */,
 				FF023CA0221E96B5002690FE /* NetworkManagerTests+URLProtocol.swift in Sources */,
 				4D5E896F21F72986000FE54A /* TestingAppDelegate.swift in Sources */,
+				FF07A34922203F2300FEA9A5 /* CharacterTableViewCellTests.swift in Sources */,
 				4D5E897B21F886D1000FE54A /* CharacterServiceTests.swift in Sources */,
 				4DA2B96621FB4B910036777C /* NetworkManagerTests.swift in Sources */,
 			);

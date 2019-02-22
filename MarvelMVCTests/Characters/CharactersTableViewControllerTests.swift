@@ -61,14 +61,15 @@ class CharactersTableViewControllerTests: XCTestCase {
     }
     
     func test_ViewDidLoad_StartsFetchForCharacters_SucceedsUpdatesTableView() {
-        let bundle = Bundle(for: type(of: self))
-        let path = bundle.path(forResource: "characters", ofType: "json")!
-        let data = FileManager().contents(atPath: path)
-        let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data!)
+        let data = CharacterServiceTests.mockData
+        let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data)
         
         mockCharacterService.modelToReturn = mockResponseModel
             
         XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), mockResponseModel.data.results.count)
+        
+        let firstCellTitle = subject.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.textLabel?.text
+        XCTAssertEqual(firstCellTitle, mockResponseModel.data.results[0].name)
     }
     
     func test_ViewDidLoad_StartsFetchForCharacters_FailsShowsEmptyTableView() {

@@ -25,9 +25,7 @@ class CharacterServiceTests: XCTestCase {
     }
 
     func test_FetchCharactersSucceedsReturnsCharacterResponseModel() {
-        let bundle = Bundle(for: type(of: self))
-        let path = bundle.path(forResource: "characters", ofType: "json")!
-        let data = FileManager().contents(atPath: path)
+        let data = CharacterServiceTests.mockData
         
         mockNetworkManager.data = data
         var fetchedModel: CharacterResponseModel?
@@ -103,4 +101,12 @@ class MockNetworkManager: NetworkManaging {
 
 enum TestError: Error {
     case test
+}
+
+extension CharacterServiceTests {
+    static var mockData: Data {
+        let bundle = Bundle(for: self)
+        let path = bundle.path(forResource: "characters", ofType: "json")!
+        return FileManager().contents(atPath: path)!
+    }
 }
