@@ -1,3 +1,4 @@
 [ ] - add Results type to stop having to unwrap CharacterResponseModel
 [ ] - reduce CharacterResponseModel to only what I need
 [ ] - stop characterTableViewCell creating internal ImageService
+[ ] - add tests to image service

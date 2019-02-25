@@ -90,3 +90,10 @@ enum URLType: String, Codable {
     case detail = "detail"
     case wiki = "wiki"
 }
+
+extension Result {
+    var imageURL: URL? {
+        let urlString = String("\(thumbnail.path).\(thumbnail.thumbnailExtension.rawValue)")
+        return Foundation.URL(string: urlString)
+    }
+}
