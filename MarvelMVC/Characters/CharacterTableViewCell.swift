@@ -10,10 +10,7 @@ import UIKit
 
 class CharacterTableViewCell: UITableViewCell {
  
-    // TODO: Invert dependency
-    private var imageService: ImageService = CharacterImageService()
-    
-    private let title: UILabel = UILabel()
+    let title: UILabel = UILabel()
     private let characterImageView: UIImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -44,7 +41,7 @@ class CharacterTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(with result: Result) {
+    func update(with result: Result, imageService: ImageService = CharacterImageService()) {
         title.text = result.name
         
         guard let url = result.imageURL else { return }

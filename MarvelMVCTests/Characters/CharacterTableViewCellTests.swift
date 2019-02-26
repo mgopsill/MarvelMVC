@@ -13,9 +13,14 @@ import XCTest
 class CharacterTableViewCellTests: XCTestCase {
     
     var subject: CharacterTableViewCell!
+    var mockResult: Result!
     
     override func setUp() {
         subject = CharacterTableViewCell(style: .default, reuseIdentifier: "test")
+        
+        let data = CharacterServiceTests.mockData
+        let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data)
+        mockResult = mockResponseModel.data.results[0]
     }
     
     override func tearDown() {
@@ -23,15 +28,11 @@ class CharacterTableViewCellTests: XCTestCase {
     }
     
     func test_CellUpdatedWithResult_UpdatesName() {
-        let data = CharacterServiceTests.mockData
-        let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data)
-        let mockResult = mockResponseModel.data.results[0]
-
         subject.update(with: mockResult)
-        XCTAssertEqual(subject.textLabel?.text, mockResult.name)
+        XCTAssertEqual(subject.title.text, mockResult.name)
     }
     
     func test_CellUpdatedWithResult_FetchesImage() {
-        // TODO: This test
+//        subject.update(with: mockResult)
     }
 }
