@@ -31,6 +31,7 @@
 		FF07A34922203F2300FEA9A5 /* CharacterTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07A34822203F2300FEA9A5 /* CharacterTableViewCellTests.swift */; };
 		FF2DD2532225386700010595 /* CharacterImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD2522225386700010595 /* CharacterImageServiceTests.swift */; };
 		FF2DD25522253AA500010595 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2DD25422253AA500010595 /* test.png */; };
+		FF6B3B6922255B310052141B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6B3B6822255B310052141B /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		FF07A34822203F2300FEA9A5 /* CharacterTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCellTests.swift; sourceTree = "<group>"; };
 		FF2DD2522225386700010595 /* CharacterImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageServiceTests.swift; sourceTree = "<group>"; };
 		FF2DD25422253AA500010595 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		FF6B3B6822255B310052141B /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				4DA2B96B21FB62AC0036777C /* URLSessionProtocol.swift */,
 				4DA2B96D21FB62E50036777C /* URLSessionDataTaskProtocol.swift */,
 				4D9624142224255D0089EEA1 /* ImageService.swift */,
+				FF6B3B6822255B310052141B /* ImageCache.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D5E897D21F8870C000FE54A /* CharacterService.swift in Sources */,
+				FF6B3B6922255B310052141B /* ImageCache.swift in Sources */,
 				4D5E897721F8868E000FE54A /* CharacterResponseModel.swift in Sources */,
 				4DA2B96E21FB62E50036777C /* URLSessionDataTaskProtocol.swift in Sources */,
 				4D5E896221F71D0F000FE54A /* CharactersTableViewController.swift in Sources */,

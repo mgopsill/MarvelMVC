@@ -11,5 +11,5 @@ import UIKit
 typealias ImageServiceCompletion = (_ image: UIImage?, _ error: Error?) -> Void
 
 protocol ImageService {
-    @discardableResult func fetchImage(request: URLRequest, completion: @escaping ImageServiceCompletion) -> URLSessionDataTaskProtocol
+    func fetchImage(request: URLRequest, completion: @escaping ImageServiceCompletion)
 }
