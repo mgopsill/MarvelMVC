@@ -33,6 +33,29 @@ class CharacterTableViewCellTests: XCTestCase {
     }
     
     func test_CellUpdatedWithResult_FetchesImage() {
-//        subject.update(with: mockResult)
+        let mockImageService = MockImageService()
+        subject.update(with: mockResult, imageService: mockImageService)
+        XCTAssertTrue(mockImageService.fetchImageCalled)
+    }
+    
+    func test_CellUpdatedWithResult_ImageFetched_UpdatesImageView() {
+        let mockImageService = MockImageService()
+        subject.update(with: mockResult, imageService: mockImageService)
+        wait(for: [mockImageService.expectation], timeout: 0.5)
+        XCTAssertNotNil(subject.characterImageView.image)
+    }
+}
+
+class MockImageService: ImageService {
+    var image: UIImage = UIImage(data: CharacterImageServiceTests.mockImageData)!
+    var error: Error = TestError.test
+    var expectation: XCTestExpectation = XCTestExpectation(description: #function)
+    var fetchImageCalled: Bool = false
+    
+    @discardableResult func fetchImage(request: URLRequest, completion: @escaping ImageServiceCompletion) -> URLSessionDataTaskProtocol {
+        fetchImageCalled = true
+        completion(image, error)
+        expectation.fulfill()
+        return URLSessionDataTask()
     }
 }

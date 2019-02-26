@@ -11,7 +11,7 @@ import UIKit
 class CharacterTableViewCell: UITableViewCell {
  
     let title: UILabel = UILabel()
-    private let characterImageView: UIImageView = UIImageView()
+    let characterImageView: UIImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
