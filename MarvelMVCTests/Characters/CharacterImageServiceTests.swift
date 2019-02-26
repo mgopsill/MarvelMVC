@@ -14,11 +14,13 @@ class CharacterImageServiceTests: XCTestCase {
     
     var subject: CharacterImageService!
     var mockNetworkManager: MockNetworkManager!
+    var mockImageCache: MockImageCache!
     let mockURLRequest = URLRequest(url: URL(string: "test")!)
     
     override func setUp() {
         mockNetworkManager = MockNetworkManager()
-        subject = CharacterImageService(networkManager: mockNetworkManager)
+        mockImageCache = MockImageCache()
+        subject = CharacterImageService(networkManager: mockNetworkManager, imageCache: mockImageCache)
     }
     
     override func tearDown() {
@@ -40,6 +42,34 @@ class CharacterImageServiceTests: XCTestCase {
         
         XCTAssertNotNil(fetchedImage)
         XCTAssertNil(fetchedError)
+    }
+    
+    func test_FetchCharacterImageSucceeds_CachesImage() {
+        mockNetworkManager.data = CharacterImageServiceTests.mockImageData
+        
+        let expectation = XCTestExpectation(description: #function)
+        subject.fetchImage(request: mockURLRequest) { (image, error) in
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+        
+        XCTAssertTrue(mockImageCache.cacheCalled)
+    }
+    
+    func test_FetchCharacterImage_CachedVersionExist_DoesNotCallNetwork_ReturnsImage() {
+        mockImageCache.cachedImage = UIImage()
+        
+        var fetchedImage: UIImage?
+        let expectation = XCTestExpectation(description: #function)
+        subject.fetchImage(request: mockURLRequest) { (image, _) in
+            fetchedImage = image
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+        
+        XCTAssertNotNil(fetchedImage)
+        XCTAssertTrue(mockImageCache.loadImageCalled)
+        XCTAssertFalse(mockNetworkManager.fetchCalled)
     }
     
     func test_FetchCharacterImageGetsIncorrectData_Errors() {
@@ -78,6 +108,21 @@ class CharacterImageServiceTests: XCTestCase {
         
         XCTAssertNil(fetchedImage)
         XCTAssertNotNil(fetchedError)
+    }
+}
+
+class MockImageCache: ImageCacher {
+    
+    var cacheCalled: Bool = false
+    func cache(_ image: UIImage, for key: URL) {
+        cacheCalled = true
+    }
+    
+    var cachedImage: UIImage?
+    var loadImageCalled: Bool = false
+    func loadImage(for key: URL) -> UIImage? {
+        loadImageCalled = true
+        return cachedImage
     }
 }
 

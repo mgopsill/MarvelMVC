@@ -32,6 +32,7 @@
 		FF2DD2532225386700010595 /* CharacterImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2DD2522225386700010595 /* CharacterImageServiceTests.swift */; };
 		FF2DD25522253AA500010595 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2DD25422253AA500010595 /* test.png */; };
 		FF6B3B6922255B310052141B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6B3B6822255B310052141B /* ImageCache.swift */; };
+		FF6B3BDB222571A10052141B /* ImageCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6B3BDA222571A10052141B /* ImageCacheTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FF2DD2522225386700010595 /* CharacterImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageServiceTests.swift; sourceTree = "<group>"; };
 		FF2DD25422253AA500010595 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		FF6B3B6822255B310052141B /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		FF6B3BDA222571A10052141B /* ImageCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			children = (
 				4DA2B96521FB4B910036777C /* NetworkManagerTests.swift */,
 				FF023C9E221E96B0002690FE /* NetworkManagerTests+URLProtocol.swift */,
+				FF6B3BDA222571A10052141B /* ImageCacheTests.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				FF07A34922203F2300FEA9A5 /* CharacterTableViewCellTests.swift in Sources */,
 				4D5E897B21F886D1000FE54A /* CharacterServiceTests.swift in Sources */,
 				FF2DD2532225386700010595 /* CharacterImageServiceTests.swift in Sources */,
+				FF6B3BDB222571A10052141B /* ImageCacheTests.swift in Sources */,
 				4DA2B96621FB4B910036777C /* NetworkManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

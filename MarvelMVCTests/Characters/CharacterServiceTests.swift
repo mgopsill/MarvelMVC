@@ -87,7 +87,10 @@ class MockNetworkManager: NetworkManaging {
     var data: Data?
     var error: Error?
     
+    var fetchCalled: Bool = false
     func fetch(request: URLRequest, completeOnMainThread: Bool, completion: @escaping ServiceCompletion) -> URLSessionDataTaskProtocol {
+        fetchCalled = true
+        
         let data = self.data
         let error = self.error
         

@@ -47,15 +47,15 @@ class CharacterTableViewCellTests: XCTestCase {
 }
 
 class MockImageService: ImageService {
+    
     var image: UIImage = UIImage(data: CharacterImageServiceTests.mockImageData)!
     var error: Error = TestError.test
     var expectation: XCTestExpectation = XCTestExpectation(description: #function)
     var fetchImageCalled: Bool = false
     
-    @discardableResult func fetchImage(request: URLRequest, completion: @escaping ImageServiceCompletion) -> URLSessionDataTaskProtocol {
+    func fetchImage(request: URLRequest, completion: @escaping ImageServiceCompletion) {
         fetchImageCalled = true
         completion(image, error)
         expectation.fulfill()
-        return URLSessionDataTask()
     }
 }
