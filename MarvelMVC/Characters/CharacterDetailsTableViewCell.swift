@@ -13,7 +13,7 @@ class CharacterDetailsTableViewCell: UITableViewCell {
     private var didUpdateConstraints = false
     
     private let nameLabel: UILabel = UILabel()
-    private let descriptionLabel: UILabel = UILabel()
+    let descriptionLabel: UILabel = UILabel()
     private let characterImageView: UIImageView = UIImageView()
     
     static let reuseIdentifier = "CharacterDetails"

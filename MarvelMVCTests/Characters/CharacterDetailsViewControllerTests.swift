@@ -42,6 +42,35 @@ class CharacterDetailsViewControllerTests: XCTestCase {
         let cell = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? CharacterDetailsTableViewCell
         XCTAssertNotNil(cell)
     }
+    
+    func testViewWillAppear_SetsPrefersLargeTitlesTrue() {
+        subject.beginAppearanceTransition(true, animated: true)
+        guard let navigationBar = subject.navigationController?.navigationBar else {
+            XCTFail("No navigation bar exists")
+            return
+        }
+        
+        XCTAssertFalse(navigationBar.prefersLargeTitles)
+    }
+    
+    func testTableView_ShouldHaveOneRow() {
+        XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), 1)
+    }
+    
+    func testTableViewCell_resultHasDescription_TextShouldBeCorrect() {
+        let data = CharacterServiceTests.mockData
+        let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data)
+        mockResult = mockResponseModel.data.results[1]
+        
+        subject = CharacterDetailsViewController(result: mockResult)
+        let cell = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? CharacterDetailsTableViewCell
+        XCTAssertEqual(cell?.descriptionLabel.text, mockResult.description)
+    }
+    
+    func testTableViewCell_resultHasNoDescription_TextShouldBeCorrect() {
+        let cell = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? CharacterDetailsTableViewCell
+        XCTAssertEqual(cell?.descriptionLabel.text, "No Description Provided")
+    }
 }
 
 extension UIViewController {
