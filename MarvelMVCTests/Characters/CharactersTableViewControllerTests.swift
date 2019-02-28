@@ -102,14 +102,22 @@ class MockCharacterService: CharacterService {
     var errorToReturn: Error?
     var networkDelay: TimeInterval?
     
+    fileprivate func run(_ completion: CharacterServiceCompletion) {
+        if let model = self.modelToReturn {
+            completion(Result.success(model))
+        } else {
+            completion(Result.failure(TestError.test))
+        }
+    }
+    
     override func fetchCharacters(completion: @escaping CharacterServiceCompletion) {
         fetchCharactersCalled = true
         if let networkDelay = networkDelay {
             DispatchQueue.main.asyncAfter(deadline: .now() + networkDelay) {
-                completion(self.modelToReturn, self.errorToReturn)
+                self.run(completion)
             }
         } else {
-            completion(modelToReturn, errorToReturn)
+            run(completion)
         }
     }
 }

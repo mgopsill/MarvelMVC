@@ -33,8 +33,13 @@ class CharactersTableViewController: UITableViewController {
         title = "Characters"
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        characterService.fetchCharacters { (model, error) in
-            self.characters = model?.data.characters
+        characterService.fetchCharacters { result in
+            switch result {
+            case .success(let model):
+                self.characters = model.data.characters
+            case .failure(let error):
+                print(error)
+            }
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
