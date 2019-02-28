@@ -35,23 +35,4 @@ class CharacterService {
             }
         }
     }
-    
-    func fCharacters(completion: @escaping (_ model: [MarvelCharacter]?, _ error: Error?) -> Void) {
-        if let url = URL(string: URLs.characters) {
-            let request = URLRequest(url: url)
-            networkManager.fetch(request: request, completeOnMainThread: false) { (data, response, error) in
-                if let data = data {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .iso8601
-                    let model = try? decoder.decode(CharacterResponseModel.self, from: data)
-                    let characters = model?.data.characters
-                    DispatchQueue.main.async {
-                        completion(characters, error)
-                    }
-                } else {
-                    completion(nil, error)
-                }
-            }
-        }
-    }
 }
