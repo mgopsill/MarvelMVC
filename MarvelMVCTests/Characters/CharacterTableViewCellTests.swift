@@ -13,14 +13,14 @@ import XCTest
 class CharacterTableViewCellTests: XCTestCase {
     
     var subject: CharacterTableViewCell!
-    var mockResult: Result!
+    var mockCharacter: MarvelCharacter!
     
     override func setUp() {
         subject = CharacterTableViewCell(style: .default, reuseIdentifier: "test")
         
         let data = CharacterServiceTests.mockData
         let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data)
-        mockResult = mockResponseModel.data.results[0]
+        mockCharacter = mockResponseModel.data.characters[0]
     }
     
     override func tearDown() {
@@ -28,19 +28,19 @@ class CharacterTableViewCellTests: XCTestCase {
     }
     
     func test_CellUpdatedWithResult_UpdatesName() {
-        subject.update(with: mockResult)
-        XCTAssertEqual(subject.title.text, mockResult.name)
+        subject.update(with: mockCharacter)
+        XCTAssertEqual(subject.title.text, mockCharacter.name)
     }
     
     func test_CellUpdatedWithResult_FetchesImage() {
         let mockImageService = MockImageService()
-        subject.update(with: mockResult, imageService: mockImageService)
+        subject.update(with: mockCharacter, imageService: mockImageService)
         XCTAssertTrue(mockImageService.fetchImageCalled)
     }
     
     func test_CellUpdatedWithResult_ImageFetched_UpdatesImageView() {
         let mockImageService = MockImageService()
-        subject.update(with: mockResult, imageService: mockImageService)
+        subject.update(with: mockCharacter, imageService: mockImageService)
         wait(for: [mockImageService.expectation], timeout: 0.5)
         XCTAssertNotNil(subject.characterImageView.image)
     }

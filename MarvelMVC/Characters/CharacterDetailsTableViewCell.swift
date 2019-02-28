@@ -64,10 +64,10 @@ class CharacterDetailsTableViewCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    func update(with result: Result, imageService: CharacterImageService = CharacterImageService()) {
-        nameLabel.text = result.name
-        descriptionLabel.text = result.description == "" ? "No Description Provided" : result.description
-        imageService.fetchImage(request: URLRequest(url: result.imageURL!)) { [weak self] (image, error) in
+    func update(with character: MarvelCharacter, imageService: CharacterImageService = CharacterImageService()) {
+        nameLabel.text = character.name
+        descriptionLabel.text = character.description == "" ? "No Description Provided" : character.description
+        imageService.fetchImage(request: URLRequest(url: character.imageURL!)) { [weak self] (image, error) in
             guard let image = image else { return }
             self?.characterImageView.image = image
         }

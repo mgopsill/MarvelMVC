@@ -45,10 +45,10 @@ class CharacterTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(with result: Result, imageService: ImageService = CharacterImageService()) {
-        title.text = result.name
+    func update(with character: MarvelCharacter, imageService: ImageService = CharacterImageService()) {
+        title.text = character.name
         
-        guard let url = result.imageURL else { return }
+        guard let url = character.imageURL else { return }
         imageService.fetchImage(request: URLRequest(url: url)) { [weak self] (image, error) in
             self?.characterImageView.image = image
         }

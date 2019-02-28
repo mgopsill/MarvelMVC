@@ -24,6 +24,24 @@ class CharacterServiceTests: XCTestCase {
         subject = nil
     }
 
+    func test_FCharactersSucceedsReturnsCharacterResponseModel() {
+        let data = CharacterServiceTests.mockData
+        
+        mockNetworkManager.data = data
+        var fetchedCharacters: [MarvelCharacter]?
+        var fetchedError: Error?
+        let expectation = XCTestExpectation(description: #function)
+        subject.fCharacters { (characters, error) in
+            fetchedCharacters = characters
+            fetchedError = error
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+        
+        XCTAssertNotNil(fetchedCharacters)
+        XCTAssertNil(fetchedError)
+    }
+    
     func test_FetchCharactersSucceedsReturnsCharacterResponseModel() {
         let data = CharacterServiceTests.mockData
         

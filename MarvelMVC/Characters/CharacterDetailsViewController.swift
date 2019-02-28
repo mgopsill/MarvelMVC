@@ -10,10 +10,10 @@ import UIKit
 
 class CharacterDetailsViewController: UITableViewController {
     
-    private let result: Result
+    private let character: MarvelCharacter
     
-    init(result: Result) {
-        self.result = result
+    init(character: MarvelCharacter) {
+        self.character = character
         super.init(style: .plain)
     }
     
@@ -22,7 +22,7 @@ class CharacterDetailsViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        title = result.name
+        title = character.name
         
         tableView.dataSource = self
         tableView.register(CharacterDetailsTableViewCell.self, forCellReuseIdentifier: CharacterDetailsTableViewCell.reuseIdentifier)
@@ -44,7 +44,7 @@ extension CharacterDetailsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterDetailsTableViewCell.reuseIdentifier, for: indexPath) as? CharacterDetailsTableViewCell else { return UITableViewCell() }
-        cell.update(with: result)
+        cell.update(with: character)
         return cell
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class CharactersTableViewController: UITableViewController {
     
     private let characterService: CharacterService
-    private var characters: [Result]? {
+    private var characters: [MarvelCharacter]? {
         didSet {
             tableView.reloadData()
         }
@@ -34,7 +34,7 @@ class CharactersTableViewController: UITableViewController {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         characterService.fetchCharacters { (model, error) in
-            self.characters = model?.data.results
+            self.characters = model?.data.characters
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
@@ -67,7 +67,7 @@ extension CharactersTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedCharacter = characters?[indexPath.row] else { return }
-        let detailsViewController = CharacterDetailsViewController(result: selectedCharacter)
+        let detailsViewController = CharacterDetailsViewController(character: selectedCharacter)
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

@@ -13,15 +13,15 @@ import XCTest
 class CharacterDetailsViewControllerTests: XCTestCase {
 
     var subject: CharacterDetailsViewController!
-    var mockResult: Result!
+    var mockCharacter: MarvelCharacter!
     
     override func setUp() {
         let data = CharacterServiceTests.mockData
         let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data)
-        mockResult = mockResponseModel.data.results[0]
+        mockCharacter = mockResponseModel.data.characters[0]
         
         let navigationController = UINavigationController()
-        subject = CharacterDetailsViewController(result: mockResult)
+        subject = CharacterDetailsViewController(character: mockCharacter)
         navigationController.setViewControllers([subject], animated: false)
     }
 
@@ -31,7 +31,7 @@ class CharacterDetailsViewControllerTests: XCTestCase {
 
     func testViewDidLoad_SetsTitleToCharacter() {
         subject.simulateViewDidLoad()
-        XCTAssertEqual(subject.title, mockResult.name)
+        XCTAssertEqual(subject.title, mockCharacter.name)
     }
     
     func test_DataSourceShouldBeSelf() {
@@ -60,11 +60,11 @@ class CharacterDetailsViewControllerTests: XCTestCase {
     func testTableViewCell_resultHasDescription_TextShouldBeCorrect() {
         let data = CharacterServiceTests.mockData
         let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data)
-        mockResult = mockResponseModel.data.results[1]
+        mockCharacter = mockResponseModel.data.characters[1]
         
-        subject = CharacterDetailsViewController(result: mockResult)
+        subject = CharacterDetailsViewController(character: mockCharacter)
         let cell = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? CharacterDetailsTableViewCell
-        XCTAssertEqual(cell?.descriptionLabel.text, mockResult.description)
+        XCTAssertEqual(cell?.descriptionLabel.text, mockCharacter.description)
     }
     
     func testTableViewCell_resultHasNoDescription_TextShouldBeCorrect() {

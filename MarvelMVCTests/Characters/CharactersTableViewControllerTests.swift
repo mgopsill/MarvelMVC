@@ -64,10 +64,10 @@ class CharactersTableViewControllerTests: XCTestCase {
         
         mockCharacterService.modelToReturn = mockResponseModel
             
-        XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), mockResponseModel.data.results.count)
+        XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), mockResponseModel.data.characters.count)
         
         let firstCell = subject.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CharacterTableViewCell
-        XCTAssertEqual(firstCell?.title.text, mockResponseModel.data.results[0].name)
+        XCTAssertEqual(firstCell?.title.text, mockResponseModel.data.characters[0].name)
     }
     
     func test_ViewDidLoad_StartsFetchForCharacters_FailsShowsEmptyTableView() {
