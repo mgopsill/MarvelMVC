@@ -28,7 +28,8 @@ class CharactersTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         tableView.dataSource = self
-        tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: "Character")
+        tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: CharacterTableViewCell.reuseIdentifier)
+        
         title = "Characters"
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -53,11 +54,20 @@ extension CharactersTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let characters = characters else { return UITableViewCell() }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Character", for: indexPath) as? CharacterTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterTableViewCell.reuseIdentifier, for: indexPath) as? CharacterTableViewCell else { return UITableViewCell() }
         
         let characterForCell = characters[indexPath.row]
         cell.update(with: characterForCell)
         
         return cell
+    }
+    
+    
+    // MARK: TableView Delegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectedCharacter = characters?[indexPath.row] else { return }
+        let detailsViewController = CharacterDetailsViewController(result: selectedCharacter)
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

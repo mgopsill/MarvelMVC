@@ -13,8 +13,12 @@ class CharacterTableViewCell: UITableViewCell {
     let title: UILabel = UILabel()
     let characterImageView: UIImageView = UIImageView()
     
+    static let reuseIdentifier = "Characters"
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
         
         title.translatesAutoresizingMaskIntoConstraints = false
         characterImageView.translatesAutoresizingMaskIntoConstraints = false

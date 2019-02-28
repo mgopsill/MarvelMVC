@@ -15,8 +15,6 @@ class CharactersTableViewControllerTests: XCTestCase {
     var subject: CharactersTableViewController!
     var mockCharacterService: MockCharacterService!
     
-    func simulateViewDidLoad() { _ = subject.view }
-    
     override func setUp() {
         super.setUp()
         mockCharacterService = MockCharacterService()
@@ -31,7 +29,7 @@ class CharactersTableViewControllerTests: XCTestCase {
     }
 
     func testViewDidLoad_SetsTitleToCharacter() {
-        simulateViewDidLoad()
+        subject.simulateViewDidLoad()
         XCTAssertEqual(subject.title, "Characters")
     }
     
@@ -49,13 +47,13 @@ class CharactersTableViewControllerTests: XCTestCase {
         XCTAssertTrue(subject.tableView.dataSource === subject)
     }
     
-    func testTableView_CellTypeIsUITableViewCell() {
+    func testTableView_DefaultCellTypeIsUITableViewCell() {
         let cell = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         XCTAssertNotNil(cell)
     }
     
     func test_ViewDidLoad_StartsFetchForCharacters() {
-        simulateViewDidLoad()
+        subject.simulateViewDidLoad()
 
         XCTAssertTrue(mockCharacterService.fetchCharactersCalled)
     }
@@ -74,7 +72,7 @@ class CharactersTableViewControllerTests: XCTestCase {
     
     func test_ViewDidLoad_StartsFetchForCharacters_FailsShowsEmptyTableView() {
         mockCharacterService.modelToReturn = nil
-        simulateViewDidLoad()
+        subject.simulateViewDidLoad()
         
         XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), 0)
     }
@@ -82,12 +80,12 @@ class CharactersTableViewControllerTests: XCTestCase {
     func test_ViewDidLoad_WhileFetchingShowsActivityIndicator() {
         let networkDelay = 0.5
         mockCharacterService.networkDelay = networkDelay
-        simulateViewDidLoad()
+        subject.simulateViewDidLoad()
         XCTAssertTrue(UIApplication.shared.isNetworkActivityIndicatorVisible)
     }
     
     func test_ViewDidLoad_AfterFetchingDoesNotShowActivityIndicator() {
-        simulateViewDidLoad()
+        subject.simulateViewDidLoad()
         let expectation = XCTestExpectation(description: #function)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             expectation.fulfill()
