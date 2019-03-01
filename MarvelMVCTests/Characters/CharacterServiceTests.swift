@@ -35,45 +35,42 @@ class CharacterServiceTests: XCTestCase {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
-        
-        let testResult = try? result?.resolve()
-        XCTAssertNotNil(testResult??.data.characters)
+   
+        XCTAssertNotNil(result?.value)
+        XCTAssertNil(result?.error)
     }
     
     func test_FetchCharactersGetsIncorrectDataDoesSomething() {
-//        let incorrectData = Data(bytes: [0,1,2,3])
-//        mockNetworkManager.data = incorrectData
-//        mockNetworkManager.error = TestError.test
-//
-//        var result: Result<CharacterResponseModel>
-//        let expectation = XCTestExpectation(description: #function)
-//        subject.fetchCharacters { fetchedResult in
-//            result = fetchedResult
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.1)
-//
-//        let testResult = try? result.resolve()
-//        XCTAssertNotNil(testResult)
+        let incorrectData = Data(bytes: [0,1,2,3])
+        mockNetworkManager.data = incorrectData
+        mockNetworkManager.error = TestError.test
+
+        var result: Result<CharacterResponseModel>?
+        let expectation = XCTestExpectation(description: #function)
+        subject.fetchCharacters { fetchedResult in
+            result = fetchedResult
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+
+        XCTAssertNotNil(result?.error)
+        XCTAssertNil(result?.value)
     }
     
     func test_FetchCharactersFailsReturnsNil() {
-//        mockNetworkManager.data = nil
-//        mockNetworkManager.error = TestError.test
-//
-//        var fetchedModel: CharacterResponseModel?
-//        var fetchedError: Error?
-//
-//        let expectation = XCTestExpectation(description: #function)
-//        subject.fetchCharacters { (characterResponseModel, error) in
-//            fetchedModel = characterResponseModel
-//            fetchedError = error
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.1)
-//
-//        XCTAssertNil(fetchedModel)
-//        XCTAssertNotNil(fetchedError)
+        mockNetworkManager.data = nil
+        mockNetworkManager.error = TestError.test
+        
+        var result: Result<CharacterResponseModel>?
+        let expectation = XCTestExpectation(description: #function)
+        subject.fetchCharacters { fetchedResult in
+            result = fetchedResult
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+        
+        XCTAssertNotNil(result?.error)
+        XCTAssertNil(result?.value)
     }
 }
 

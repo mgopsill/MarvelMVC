@@ -13,14 +13,16 @@ import XCTest
 class CharactersTableViewControllerTests: XCTestCase {
 
     var subject: CharactersTableViewController!
-    var mockCharacterService: MockCharacterService!
+//    var mockCharacterService: MockCharacterService!
+    var mockViewModel: MockCharacterViewModel!
     
     override func setUp() {
         super.setUp()
-        mockCharacterService = MockCharacterService()
+//        mockCharacterService = MockCharacterService()
+        mockViewModel = MockCharacterViewModel()
         
         let navigationController = UINavigationController()
-        subject = CharactersTableViewController(characterService: mockCharacterService)
+        subject = CharactersTableViewController(viewModel: mockViewModel)
         navigationController.setViewControllers([subject], animated: false)
     }
 
@@ -55,14 +57,14 @@ class CharactersTableViewControllerTests: XCTestCase {
     func test_ViewDidLoad_StartsFetchForCharacters() {
         subject.simulateViewDidLoad()
 
-        XCTAssertTrue(mockCharacterService.fetchCharactersCalled)
+        XCTAssertTrue(mockViewModel.fetchCharactersCalled)
     }
     
     func test_ViewDidLoad_StartsFetchForCharacters_SucceedsUpdatesTableView() {
         let data = CharacterServiceTests.mockData
         let mockResponseModel = CharacterResponseModel.characterReponseModel(for: data)
         
-        mockCharacterService.modelToReturn = mockResponseModel
+        mockViewModel.characters = mockResponseModel.data.characters
             
         XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), mockResponseModel.data.characters.count)
         
@@ -71,7 +73,7 @@ class CharactersTableViewControllerTests: XCTestCase {
     }
     
     func test_ViewDidLoad_StartsFetchForCharacters_FailsShowsEmptyTableView() {
-        mockCharacterService.modelToReturn = nil
+        mockViewModel.characters = nil
         subject.simulateViewDidLoad()
         
         XCTAssertEqual(subject.tableView.numberOfRows(inSection: 0), 0)
@@ -79,12 +81,14 @@ class CharactersTableViewControllerTests: XCTestCase {
     
     func test_ViewDidLoad_WhileFetchingShowsActivityIndicator() {
         let networkDelay = 0.5
-        mockCharacterService.networkDelay = networkDelay
+        mockViewModel.networkDelay = networkDelay
+        mockViewModel.state = .loaded
         subject.simulateViewDidLoad()
         XCTAssertTrue(UIApplication.shared.isNetworkActivityIndicatorVisible)
     }
     
     func test_ViewDidLoad_AfterFetchingDoesNotShowActivityIndicator() {
+        mockViewModel.state = .loaded
         subject.simulateViewDidLoad()
         let expectation = XCTestExpectation(description: #function)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -95,29 +99,21 @@ class CharactersTableViewControllerTests: XCTestCase {
     }
 }
 
-class MockCharacterService: CharacterService {
+class MockCharacterViewModel: CharactersViewModelProtocol {
+    var characters: [MarvelCharacter]?
     
+    var state: CharactersTableViewState = .loading
     var fetchCharactersCalled: Bool = false
-    var modelToReturn: CharacterResponseModel?
-    var errorToReturn: Error?
     var networkDelay: TimeInterval?
-    
-    fileprivate func run(_ completion: CharacterServiceCompletion) {
-        if let model = self.modelToReturn {
-            completion(Result.success(model))
-        } else {
-            completion(Result.failure(TestError.test))
-        }
-    }
-    
-    override func fetchCharacters(completion: @escaping CharacterServiceCompletion) {
+
+    func fetchCharacters(then completion: @escaping (CharactersTableViewState) -> Void) {
         fetchCharactersCalled = true
         if let networkDelay = networkDelay {
             DispatchQueue.main.asyncAfter(deadline: .now() + networkDelay) {
-                self.run(completion)
+                completion(self.state)
             }
         } else {
-            run(completion)
+            completion(state)
         }
     }
 }

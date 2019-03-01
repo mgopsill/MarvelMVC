@@ -39,6 +39,8 @@
 		FFC34BD52229207F00735A83 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC34BD42229207F00735A83 /* Coordinator.swift */; };
 		FFC34BD7222920A000735A83 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC34BD6222920A000735A83 /* RootCoordinator.swift */; };
 		FFC34BDA2229213600735A83 /* RootCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC34BD92229213600735A83 /* RootCoordinatorTests.swift */; };
+		FFC34BDE2229257900735A83 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC34BDD2229257900735A83 /* CharactersViewModel.swift */; };
+		FFC34BE022292DF200735A83 /* CharactersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC34BDF22292DF200735A83 /* CharactersViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		FFC34BD42229207F00735A83 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		FFC34BD6222920A000735A83 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		FFC34BD92229213600735A83 /* RootCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorTests.swift; sourceTree = "<group>"; };
+		FFC34BDD2229257900735A83 /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
+		FFC34BDF22292DF200735A83 /* CharactersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,13 +218,11 @@
 		FFA1BB02221EC76C005923F9 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				FFC34BDC2229255600735A83 /* CharacterService */,
+				FFC34BDB2229253F00735A83 /* CharacterDetails */,
 				4D5E896121F71D0F000FE54A /* CharactersTableViewController.swift */,
+				FFC34BDD2229257900735A83 /* CharactersViewModel.swift */,
 				FF07A34622203F0700FEA9A5 /* CharacterTableViewCell.swift */,
-				4D5E897C21F8870C000FE54A /* CharacterService.swift */,
-				4D5E897621F8868E000FE54A /* CharacterResponseModel.swift */,
-				4D962412222425390089EEA1 /* CharacterImageService.swift */,
-				FFA6067022280BD80094ECC0 /* CharacterDetailsViewController.swift */,
-				FF8075FE22281100007DA076 /* CharacterDetailsTableViewCell.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -230,6 +232,7 @@
 			children = (
 				4D5E897A21F886D1000FE54A /* CharacterServiceTests.swift */,
 				4D5E896321F71D7B000FE54A /* CharactersTableViewControllerTests.swift */,
+				FFC34BDF22292DF200735A83 /* CharactersViewModelTests.swift */,
 				FF07A34822203F2300FEA9A5 /* CharacterTableViewCellTests.swift */,
 				FF2DD2522225386700010595 /* CharacterImageServiceTests.swift */,
 				FFA6066E22280BA70094ECC0 /* CharacterDetailsViewControllerTests.swift */,
@@ -252,6 +255,25 @@
 				FFC34BD92229213600735A83 /* RootCoordinatorTests.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		FFC34BDB2229253F00735A83 /* CharacterDetails */ = {
+			isa = PBXGroup;
+			children = (
+				FFA6067022280BD80094ECC0 /* CharacterDetailsViewController.swift */,
+				FF8075FE22281100007DA076 /* CharacterDetailsTableViewCell.swift */,
+			);
+			path = CharacterDetails;
+			sourceTree = "<group>";
+		};
+		FFC34BDC2229255600735A83 /* CharacterService */ = {
+			isa = PBXGroup;
+			children = (
+				4D5E897C21F8870C000FE54A /* CharacterService.swift */,
+				4D5E897621F8868E000FE54A /* CharacterResponseModel.swift */,
+				4D962412222425390089EEA1 /* CharacterImageService.swift */,
+			);
+			path = CharacterService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC34BDE2229257900735A83 /* CharactersViewModel.swift in Sources */,
 				FFC34BD52229207F00735A83 /* Coordinator.swift in Sources */,
 				4D5E897D21F8870C000FE54A /* CharacterService.swift in Sources */,
 				FF6B3B6922255B310052141B /* ImageCache.swift in Sources */,
@@ -380,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC34BE022292DF200735A83 /* CharactersViewModelTests.swift in Sources */,
 				4D5E896B21F72713000FE54A /* AppDelegateTests.swift in Sources */,
 				4D5E896421F71D7B000FE54A /* CharactersTableViewControllerTests.swift in Sources */,
 				FF023CA0221E96B5002690FE /* NetworkManagerTests+URLProtocol.swift in Sources */,

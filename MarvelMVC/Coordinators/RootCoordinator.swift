@@ -13,7 +13,9 @@ class RootCoordinator: Coordinator {
     var navigationController: UINavigationController
     
     var charactersViewController: CharactersTableViewController {
-        return CharactersTableViewController(characterService: CharacterService())
+        let service = CharacterService()
+        let viewModel = CharactersViewModel(characterService: service)
+        return CharactersTableViewController(viewModel: viewModel)
     }
     
     init(navigationController: UINavigationController) {

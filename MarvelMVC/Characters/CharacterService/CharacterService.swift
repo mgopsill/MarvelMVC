@@ -55,12 +55,21 @@ enum Result<Value> {
 }
 
 extension Result {
-    func resolve() throws -> Value {
+    var value: Value? {
         switch self {
         case .success(let value):
             return value
+        case .failure:
+            return nil
+        }
+    }
+    
+    var error: Error? {
+        switch self {
+        case .success:
+            return nil
         case .failure(let error):
-            throw error
+            return error
         }
     }
 }
