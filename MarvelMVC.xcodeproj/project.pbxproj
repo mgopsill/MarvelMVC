@@ -36,6 +36,9 @@
 		FF8075FF22281100007DA076 /* CharacterDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8075FE22281100007DA076 /* CharacterDetailsTableViewCell.swift */; };
 		FFA6066F22280BA70094ECC0 /* CharacterDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6066E22280BA70094ECC0 /* CharacterDetailsViewControllerTests.swift */; };
 		FFA6067122280BD80094ECC0 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA6067022280BD80094ECC0 /* CharacterDetailsViewController.swift */; };
+		FFC34BD52229207F00735A83 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC34BD42229207F00735A83 /* Coordinator.swift */; };
+		FFC34BD7222920A000735A83 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC34BD6222920A000735A83 /* RootCoordinator.swift */; };
+		FFC34BDA2229213600735A83 /* RootCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC34BD92229213600735A83 /* RootCoordinatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +85,9 @@
 		FF8075FE22281100007DA076 /* CharacterDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		FFA6066E22280BA70094ECC0 /* CharacterDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		FFA6067022280BD80094ECC0 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
+		FFC34BD42229207F00735A83 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		FFC34BD6222920A000735A83 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		FFC34BD92229213600735A83 /* RootCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 		4D5E894021F71C0E000FE54A /* MarvelMVC */ = {
 			isa = PBXGroup;
 			children = (
+				FFC34BD32229207000735A83 /* Coordinators */,
 				FFA1BB02221EC76C005923F9 /* Characters */,
 				4D5E897821F886B1000FE54A /* Service */,
 				4D5E896821F726F5000FE54A /* AppDelegate */,
@@ -136,6 +143,7 @@
 		4D5E895521F71C0F000FE54A /* MarvelMVCTests */ = {
 			isa = PBXGroup;
 			children = (
+				FFC34BD82229212300735A83 /* Coordinators */,
 				4DA2B97021FB660A0036777C /* TestData */,
 				FFA1BB03221EC7EE005923F9 /* Characters */,
 				4D5E897921F886B9000FE54A /* Service */,
@@ -227,6 +235,23 @@
 				FFA6066E22280BA70094ECC0 /* CharacterDetailsViewControllerTests.swift */,
 			);
 			path = Characters;
+			sourceTree = "<group>";
+		};
+		FFC34BD32229207000735A83 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				FFC34BD42229207F00735A83 /* Coordinator.swift */,
+				FFC34BD6222920A000735A83 /* RootCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		FFC34BD82229212300735A83 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				FFC34BD92229213600735A83 /* RootCoordinatorTests.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC34BD52229207F00735A83 /* Coordinator.swift in Sources */,
 				4D5E897D21F8870C000FE54A /* CharacterService.swift in Sources */,
 				FF6B3B6922255B310052141B /* ImageCache.swift in Sources */,
 				4D5E897721F8868E000FE54A /* CharacterResponseModel.swift in Sources */,
@@ -340,6 +366,7 @@
 				4D9624152224255D0089EEA1 /* ImageService.swift in Sources */,
 				FFA6067122280BD80094ECC0 /* CharacterDetailsViewController.swift in Sources */,
 				FF8075FF22281100007DA076 /* CharacterDetailsTableViewCell.swift in Sources */,
+				FFC34BD7222920A000735A83 /* RootCoordinator.swift in Sources */,
 				4D962413222425390089EEA1 /* CharacterImageService.swift in Sources */,
 				4D5E896D21F72933000FE54A /* main.swift in Sources */,
 				4DA2B96C21FB62AC0036777C /* URLSessionProtocol.swift in Sources */,
@@ -362,6 +389,7 @@
 				4D5E897B21F886D1000FE54A /* CharacterServiceTests.swift in Sources */,
 				FF2DD2532225386700010595 /* CharacterImageServiceTests.swift in Sources */,
 				FF6B3BDB222571A10052141B /* ImageCacheTests.swift in Sources */,
+				FFC34BDA2229213600735A83 /* RootCoordinatorTests.swift in Sources */,
 				4DA2B96621FB4B910036777C /* NetworkManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
